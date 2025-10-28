@@ -1,80 +1,80 @@
-# EduQuest: Transforma Contenido en Conocimiento
+# EduQuest: Transform Content into Knowledge
 
-EduQuest es una aplicación web innovadora construida con Next.js y TypeScript, diseñada para convertir automáticamente cualquier texto, documento o contenido de una URL en un cuestionario interactivo. Es la herramienta perfecta para estudiantes, educadores y curiosos que deseen poner a prueba su comprensión sobre un tema específico de forma rápida y eficiente.
+EduQuest is an innovative web application built with Next.js and TypeScript, designed to automatically convert any text, document, or content from a URL into an interactive quiz[...]
 
-## ¿Cómo Funciona?
+## How It Works
 
-La lógica de la aplicación es simple pero poderosa:
+The application's logic is simple but powerful:
 
-1.  **Entrada de Contenido**: El usuario visita la página principal donde se encuentra el componente `TextAnalyzer`. Aquí puede elegir entre tres opciones:
-    *   Pegar texto directamente en un área de texto.
-    *   Subir un archivo (como `.txt`, `.pdf`, etc.).
-    *   Introducir la URL de una página web.
+1.  **Content Input**: The user visits the main page where the `TextAnalyzer` component is located. Here they can choose between three options:
+    *   Paste text directly into a text area.
+    *   Upload a file (such as `.txt`, `.pdf`, etc.).
+    *   Enter the URL of a web page.
 
-2.  **Procesamiento en el Backend**: Una vez que el usuario envía el contenido, el frontend realiza una llamada a una de las API internas de Next.js:
-    *   `api/process-file`: Para archivos subidos.
-    *   `api/process-url`: Para URLs.
-    *   `api/generate-questions`: Para texto directo.
+2.  **Backend Processing**: Once the user submits the content, the frontend makes a call to one of Next.js's internal APIs:
+    *   `api/process-file`: For uploaded files.
+    *   `api/process-url`: For URLs.
+    *   `api/generate-questions`: For direct text.
 
-3.  **Generación con IA**: El backend recibe el texto extraído. En este punto, utiliza un modelo de lenguaje avanzado (LLM) a través del Vercel AI SDK. Se le envía el contenido junto con un prompt que le instruye generar una serie de preguntas y respuestas basadas exclusivamente en la información proporcionada.
+3.  **AI Generation**: The backend receives the extracted text. At this point, it uses an advanced language model (LLM) via the Vercel AI SDK. The content is sent along with a prompt[...]
 
-4.  **Visualización del Cuestionario**: La API devuelve las preguntas generadas en formato JSON al cliente. La aplicación redirige al usuario a la página `/quiz`, donde el componente `QuestionsList` renderiza el cuestionario de forma clara y ordenada, usualmente utilizando un componente de tipo "acordeón" para mostrar una pregunta a la vez con su respuesta oculta.
+4.  **Quiz Display**: The API returns the generated questions in JSON format to the client. The application redirects the user to the `/quiz` page, where the `QuestionsList` component[...]
 
-## Implementación de la Inteligencia Artificial
+## AI Implementation
 
-La inteligencia artificial es el núcleo de EduQuest. Se implementa de la siguiente manera:
+Artificial intelligence is the core of EduQuest. It is implemented as follows:
 
-*   **Vercel AI SDK**: Se utiliza como una capa de abstracción para facilitar la comunicación con diferentes modelos de lenguaje (como Google Gemini, OpenAI GPT, etc.). Permite enviar el contenido y recibir las respuestas generadas por el modelo en un formato de streaming o estático.
-*   **API Endpoints**: La lógica de la IA está encapsulada en los endpoints del backend (`/api/*`). Estos endpoints se encargan de recibir la petición del cliente, preparar el prompt para el modelo de IA y devolver una respuesta estructurada. Esto mantiene el código del frontend limpio y desacoplado de la lógica de la IA.
-*   **Prompt Engineering**: Aunque no es visible directamente en el código, el éxito de la generación de preguntas depende de un "prompt" bien diseñado que instruye al modelo para que actúe como un creador de cuestionarios, asegurando que las preguntas sean relevantes y sus respuestas se basen en el texto de origen.
+*   **Vercel AI SDK**: Used as an abstraction layer to facilitate communication with different language models (such as Google Gemini, OpenAI GPT, etc.). It allows sending the content and[...]
+*   **API Endpoints**: The AI logic is encapsulated in the backend endpoints (`/api/*`). These endpoints handle receiving the client's request, preparing the prompt for the model[...]
+*   **Prompt Engineering**: Although not directly visible in the code, the success of the question generation depends on a well-crafted prompt that instructs the model to act as [...]
 
-## Tecnologías Utilizadas
+## Technologies Used
 
-*   **Framework**: Next.js 14 (con App Router)
-*   **Lenguaje**: TypeScript
-*   **Inteligencia Artificial**: Vercel AI SDK
-*   **Componentes UI**: Shadcn/UI, Radix UI
-*   **Estilo**: Tailwind CSS
-*   **Iconos**: Lucide React
-*   **Gestor de Paquetes**: PNPM
+*   **Framework**: Next.js 14 (with App Router)
+*   **Language**: TypeScript
+*   **Artificial Intelligence**: Vercel AI SDK
+*   **UI Components**: Shadcn/UI, Radix UI
+*   **Styling**: Tailwind CSS
+*   **Icons**: Lucide React
+*   **Package Manager**: PNPM
 
-## Puesta en Marcha Local
+## Running Locally
 
-Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
+To run this project on your local machine, follow these steps:
 
-### Prerrequisitos
+### Prerequisites
 
-*   Node.js (versión 18 o superior)
-*   `pnpm` instalado (`npm install -g pnpm`)
-*   Una clave de API de un proveedor de modelos de IA (ej. Google AI Studio, OpenAI).
+*   Node.js (version 18 or higher)
+*   `pnpm` installed (`npm install -g pnpm`)
+*   An API key from an AI model provider (e.g. Google AI Studio, OpenAI).
 
-### Pasos
+### Steps
 
-1.  **Clonar el Repositorio**
+1.  **Clone the Repository**
     ```bash
-    git clone <URL-del-repositorio>
+    git clone <repository-URL>
     cd eduquest
     ```
 
-2.  **Instalar Dependencias**
-    Ejecuta el siguiente comando para instalar todas las dependencias del proyecto.
+2.  **Install Dependencies**
+    Run the following command to install all project dependencies.
     ```bash
     pnpm install
     ```
 
-3.  **Configurar Variables de Entorno**
-    Crea un archivo `.env.local` en la raíz del proyecto y añade tu clave de API. Puedes copiar el ejemplo:
+3.  **Configure Environment Variables**
+    Create a `.env.local` file at the root of the project and add your API key. You can copy the example:
     ```bash
     # .env.local
-    GOOGLE_API_KEY="TU_API_KEY_DE_GOOGLE_AQUI"
-    # o OPENAI_API_KEY="TU_API_KEY_DE_OPENAI_AQUI"
+    GOOGLE_API_KEY="YOUR_GOOGLE_API_KEY_HERE"
+    # or OPENAI_API_KEY="YOUR_OPENAI_API_KEY_HERE"
     ```
 
-4.  **Ejecutar el Servidor de Desarrollo**
-    Inicia la aplicación en modo de desarrollo.
+4.  **Start the Development Server**
+    Start the application in development mode.
     ```bash
     pnpm dev
     ```
 
-5.  **Abrir la Aplicación**
-    Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación en funcionamiento.
+5.  **Open the Application**
+    Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running.
