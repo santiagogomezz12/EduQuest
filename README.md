@@ -2,6 +2,10 @@
 
 EduQuest is an innovative web application built with Next.js and TypeScript, designed to automatically convert any text, document, or content from a URL into an interactive quiz[...]
 
+## Benefits for Students and Teachers
+
+EduQuest helps students verify if they have truly understood what they have read by allowing them to generate quizzes and self-assess their comprehension. Furthermore, if a database is implemented, the platform could be used by teachers to assign reading tasks and provide an effective evaluation tool. EduQuest also helps reduce the need for special consultation classes about given texts; instead of attending a separate session to resolve doubts, students can upload the text to the application and get instant evaluation and feedback.
+
 ## How It Works
 
 The application's logic is simple but powerful:
