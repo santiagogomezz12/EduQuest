@@ -65,7 +65,7 @@ FORMATO JSON REQUERIDO:
 }`
 
     const { text: responseText } = await generateText({
-      model: google("gemini-2.0-flash-exp", {
+      model: google("gemini-2.5-flash", {
         apiKey: apiKey,
       }),
       prompt,
